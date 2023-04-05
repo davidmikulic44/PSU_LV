@@ -17,6 +17,6 @@ def check(kvadrat,redovi,stupci):
         polje = np.vstack([polje,red1])
     return polje
 
-img = check(50,4,5)
+img = check(100,4,5)
 plt.imshow(img, cmap='gray', vmin=0, vmax=255)
 plt.show()
