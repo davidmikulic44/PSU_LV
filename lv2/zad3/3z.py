@@ -1,6 +1,4 @@
 from matplotlib import pyplot as plt
-from skimage.transform import resize
-import matplotlib.image as mpimg
 import numpy as np
 
 
@@ -17,16 +15,32 @@ img1 = np.rot90(img,3) #zakrenuta slika
 
 img2 = np.fliplr(img) #zrcaljena slika
 
+img3 = img[::5,::5] #smanjena kvaliteta
 
-img1_1 = [[img_array[j][i] for j in range(len(img_array))] for i in range(len(img_array[0]))]
-img1_1 = np.fliplr(img1_1)
+redovi = img.shape[0] #broj redova
+stupci = img.shape[1] #broj stupaca
+dg = stupci//4
+gg = stupci//2
 
-img3 = img_array[::5,::5] #smanjena kvaliteta
+pr_img = img.copy()
+for i in range(redovi):
+    for j in range(stupci):
+        if (j < dg or j > gg): 
+            pr_img[i][j] = 0
 
 plt.figure(1)
-plt.title("Brightness")
-plt.imshow(img_array,cmap='gray') #brightness
+plt.title("a) brightness")
+plt.imshow(img_array,cmap='gray')
 plt.figure(2)
-plt.title("Rotirana slika")
+plt.title("b) rotirana slika")
 plt.imshow(img1,cmap='gray')
+plt.figure(3)
+plt.title("c) zrcaljena slika")
+plt.imshow(img2,cmap='gray')
+plt.figure(4)
+plt.title("d) smanjena kvaliteta slike")
+plt.imshow(img3,cmap='gray')
+plt.figure(5)
+plt.title("e) stupci")
+plt.imshow(pr_img, cmap='gray')
 plt.show()
